@@ -1,5 +1,5 @@
 import {useEffect,useMemo,useRef,useState} from 'react';
-import {BookOpen,BookOpenCheck,CalendarDays,Check,ChevronLeft,ChevronRight,Clock,Download,FileText,Flame,Home,ListChecks,Menu,NotebookPen,Pause,Play,Plus,RotateCcw,Save,Search,Settings,ShieldCheck,Target,Timer,Trash2,Upload,X,CheckCircle2,ArrowRight,BookMarked,Sparkles} from 'lucide-react';
+import {BookOpen,BookOpenCheck,CalendarDays,Check,ChevronLeft,ChevronRight,Clock,Download,FileText,Flame,Home,ListChecks,Menu,NotebookPen,Pause,Play,Plus,RotateCcw,Save,Search,Settings,ShieldCheck,Target,Timer,Trash2,Upload,X,CheckCircle2,ArrowRight,BookMarked,Sparkles,Moon,Sun} from 'lucide-react';
 
 const KEY='mutolaa-react-v1';
 const seed=[
@@ -59,6 +59,8 @@ function TaskBreakdown({date,data,patchDay}){
 }
 export default function App(){
  const [d,setD]=useState(load),[page,setPage]=useState('home'),[mobile,setMobile]=useState(false),[toast,setToast]=useState('');
+ const [dark,setDark]=useState(()=>{try{return localStorage.getItem('mutolaa-theme')==='dark'}catch{return false}});
+ useEffect(()=>{try{localStorage.setItem('mutolaa-theme',dark?'dark':'light')}catch{}},[dark]);
  const [sel,setSel]=useState(iso()),[q,setQ]=useState(''),[cat,setCat]=useState('Barchasi'),[filter,setFilter]=useState('Barchasi');
  const [seconds,setSeconds]=useState(1800),[running,setRunning]=useState(false),[duration,setDuration]=useState(30);
  const [modal,setModal]=useState(false),[edit,setEdit]=useState(null),[form,setForm]=useState({title:'',author:'',category:'Badiiy',description:'',pagesTotal:''}),fileRef=useRef(null);
@@ -83,10 +85,10 @@ export default function App(){
  const reset=()=>{if(confirm('Barcha qaydlarni o‘chirishni xohlaysizmi? Avval backup oling.')){setD(initial());setToast('Reja qayta boshlandi')}};
  const timerFmt=`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`;
  const title=({home:'Umumiy ko‘rinish',calendar:'30 kunlik reja',books:'Kitoblarim',timer:'Fokus taymeri',notes:'Qaydlarim',settings:'Sozlamalar'})[page];
- return <div className="shell">
+ return <div className={'shell '+(dark?'dark':'')}>
  <aside className={'sidebar '+(mobile?'open':'')}><div className="brand"><div className="brandicon"><BookOpenCheck/></div><div><b>Mutolaa</b><small>INTIZOM KUNDALIGI</small></div><button className="closemobile" onClick={()=>setMobile(false)}><X/></button></div><div className="navlabel">ASOSIY</div><Nav icon={<Home/>} label="Umumiy ko‘rinish" active={page==='home'} onClick={()=>go('home')}/><Nav icon={<CalendarDays/>} label="30 kunlik reja" active={page==='calendar'} onClick={()=>go('calendar')}/><Nav icon={<BookOpen/>} label="Kitoblarim" active={page==='books'} onClick={()=>go('books')}/><Nav icon={<Timer/>} label="Fokus taymeri" active={page==='timer'} onClick={()=>go('timer')}/><Nav icon={<NotebookPen/>} label="Qaydlarim" active={page==='notes'} onClick={()=>go('notes')}/><div className="navlabel spaced">SHAXSIY</div><Nav icon={<Settings/>} label="Sozlamalar" active={page==='settings'} onClick={()=>go('settings')}/><div className="sidebottom"><div className="quote"><Sparkles size={17}/><p>“Katta natija — har kuni bajarilgan kichik ishlar yig‘indisi.”</p></div><small>● Ma’lumotlar shu brauzerda saqlanadi</small></div></aside>
  {mobile&&<button className="backdrop" onClick={()=>setMobile(false)}/>}
- <main><header className="topbar"><div className="topleft"><button className="hamb" onClick={()=>setMobile(true)}><Menu/></button><div><div className="crumb">Shaxsiy rivojlanish　›　<b>{title}</b></div><small>{new Date().toLocaleDateString('uz-UZ',{weekday:'long',day:'numeric',month:'long'})}</small></div></div><div className="autosave">● Avtomatik saqlanmoqda <span>M</span></div></header>
+ <main><header className="topbar"><div className="topleft"><button className="hamb" onClick={()=>setMobile(true)}><Menu/></button><div><div className="crumb">Shaxsiy rivojlanish　›　<b>{title}</b></div><small>{new Date().toLocaleDateString('uz-UZ',{weekday:'long',day:'numeric',month:'long'})}</small></div></div><div className="topactions"><button className="theme-toggle" type="button" onClick={()=>setDark(v=>!v)} aria-label={dark?'Yorug‘ rejimga o‘tish':'Qorong‘i rejimga o‘tish'} title={dark?'Yorug‘ rejim':'Qorong‘i rejim'}>{dark?<Sun/>:<Moon/>}<span>{dark?'Yorug‘':'Qorong‘i'}</span></button><div className="autosave">● Avtomatik saqlanmoqda <span>M</span></div></div></header>
  <div className="content">
  {page==='home'&&<div className="stack">
  <section className="hero"><div className="hero-copy"><div className="herokicker"><Sparkles size={15}/> BUGUNGI MAQSAD</div><h1>Kamroq va’da.<br/><em>Ko‘proq bajarilgan ish.</em></h1><p>Bugun o‘zingga bergan va’dangni bajar. Mukammallik emas, davomiylik muhim.</p><div className="hero-actions"><Btn onClick={()=>go('timer')}><Play size={16}/> Mutolaaga kirish</Btn><button onClick={()=>go('calendar')}>Rejani ko‘rish <ArrowRight size={15}/></button></div></div><div className="hero-art"><div className="ring"/><div className="artbook"><BookOpen size={45}/><b>30</b></div><small>KUNLIK ODAT</small></div><div className="herobottom"><span><Clock/> 30 daqiqa</span><span><BookOpen/> 8–12 bet</span><span><NotebookPen/> 1 xulosa</span></div></section>

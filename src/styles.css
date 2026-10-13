@@ -30,3 +30,25 @@
 .taskadd button{display:flex;align-items:center;justify-content:center;gap:5px;border:1px solid #d9e6d9;background:#eef5ee;color:#3f6d49;border-radius:8px;padding:9px 11px;font-size:10px;font-weight:800;white-space:nowrap}
 .taskadd button:disabled{opacity:.45;cursor:not-allowed}
 .taskcomplete{margin:10px 0 0!important;color:#477a51!important;font-size:10px!important;font-weight:750}
+
+/* Theme switch */
+.topactions{display:flex;align-items:center;gap:18px}
+.theme-toggle{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#f8faf7;color:#536458;font-size:11px;font-weight:700}
+.theme-toggle svg{width:16px;height:16px}
+.shell.dark{--line:#303b34;--muted:#a1ada4;background:#151b17;color:#e4ebe5;color-scheme:dark}
+.dark .sidebar,.dark .topbar,.dark .panel,.dark .stat,.dark .bookcard,.dark .empty,.dark .modal{background:#1e2621;color:#e4ebe5;border-color:#303b34}
+.dark .topbar{border-bottom-color:#303b34}
+.dark .sidebar{border-right-color:#303b34}
+.dark .crumb b,.dark .panel h2,.dark .panel h3,.dark .bookcard h3,.dark .stat>strong,.dark .checkrow b,.dark .principle strong,.dark .backup b,.dark .field>span,.dark .modal h2,.dark .timer>div>b{color:#e4ebe5}
+.dark .crumb,.dark .topleft small,.dark .muted,.dark .author,.dark .description,.dark .checkrow small,.dark .principle small,.dark .backup small,.dark .autosave,.dark .endrow>small,.dark .pagehead p,.dark .pagehead h1{color:#a4b0a6}
+.dark .nav{color:#aab6ac}.dark .nav:hover,.dark .nav.active{background:#29392e;color:#b9d8c0}.dark .quote,.dark .tip{background:#26342a;border-color:#344638;color:#b9d8c0}
+.dark .topactions .theme-toggle,.dark .btn.soft,.dark .filters select,.dark .bookactions select,.dark .search,.dark .field input,.dark .field textarea,.dark .field select,.dark .panel>textarea,.dark .taskadd input{background:#18201b;color:#e0e9e1;border-color:#39463d}
+.dark .search input{color:#e0e9e1}.dark .search input::placeholder,.dark input::placeholder,.dark textarea::placeholder{color:#7f8d82}
+.dark .checkrow .fakecheck,.dark .subtasklabel .fakecheck{background:#1a241e;border-color:#455349}.dark .iconbtn:hover,.dark .daylist>button:hover,.dark .daylist>button.selected{background:#29372d;border-color:#3b4b3e;color:#d7e5d9}
+.dark .taskbreakhead h3,.dark .taskbreakhead small,.dark .subtasklabel,.dark .notecard>p,.dark .daylist>button,.dark .between b{color:#c6d1c8}
+.dark .taskcount,.dark .taskhead small,.dark .backup>span,.dark .stat-icon,.dark .presets button{background:#29372d;color:#b9d8c0}
+.dark .taskadd button,.dark .presets button.chosen{background:#293b30;border-color:#405845;color:#c5e0c9}
+.dark .circle:before{background:#1e2621}.dark .monthgrid button,.dark .minical button{background:#202a23;border-color:#354238;color:#c0ccc2}.dark .monthgrid button.done,.dark .minical button.done,.dark .daycheck.done{background:#2a4230;border-color:#2a4230;color:#c4dfc8}
+.dark .daycheck{background:#29332c;color:#aab6ac}.dark .pill{background:#29332c;color:#c0ccc2}.dark .pill.green{background:#2a4230;color:#c4dfc8}
+.dark .hero{box-shadow:0 8px 24px #0003}.dark .warning{background:#342d1f;border-color:#51442a;color:#d7bf86}.dark .danger{border-color:#4b3531}.dark .danger button{background:#382521;border-color:#62413a;color:#e49a8c}
+.dark .toast{background:#254331}.dark .modalback{background:#000a}
